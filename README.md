@@ -84,3 +84,31 @@ The server.py file:
 3. Starts the server to listen for incoming requests
 
 Other agents can now connect to this server and utilize the calculator functionality through the A2A protocol.
+
+## Connecting with Solace Agent Mesh
+
+You can connect this Strands A2A server to the [Solace Agent Mesh](https://github.com/SolaceLabs/solace-agent-mesh) to enable communication with other agents on the mesh. This allows your Strands agent to participate in a broader ecosystem of agents.
+
+### Sample Proxy Configuration
+
+A sample configuration file (`sample_proxy.yaml`) is provided to demonstrate how to configure the Solace Agent Mesh A2A proxy to connect to this Strands A2A server:
+
+```yaml
+# --- List of Downstream Agents to Proxy ---
+proxied_agents:
+  # Example: Connecting to the Strands Calculator Agent
+  - name: "StrandsCalculator" # The name this agent will have on the Solace mesh
+    url: "http://0.0.0.0:9000" # The real HTTP endpoint of the agent
+```
+
+### Setting Up Solace Agent Mesh
+
+To set up and configure Solace Agent Mesh:
+
+1. Follow the installation and initialization instructions in the [Solace Agent Mesh documentation](https://github.com/SolaceLabs/solace-agent-mesh).
+
+1. Configure the A2A proxy using the sample configuration provided above, adjusting the URL to match your Strands A2A server's address. Note, you can place this yamle file under `configs/agents`
+
+1. Start the Solace Agent Mesh with your configuration to connect your Strands agent to the mesh.
+
+This integration enables your Strands Calculator Agent to communicate with other agents on the Solace event mesh, expanding its capabilities and reach.
