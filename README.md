@@ -78,7 +78,7 @@ This endpoint provides standardized metadata about the agent capabilities accord
 
 Run the following from terminal
 ```
-curl -X POST http://localhost:9000/ \                                                                                                              9s
+curl -X POST http://localhost:9001 \
 -H "Content-Type: application/json" \
 -d '{
   "jsonrpc": "2.0",
