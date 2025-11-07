@@ -9,6 +9,9 @@ This project sets up a basic A2A server using the Strands framework. It creates 
 ## Prerequisites
 
 - Python 3.10+
+- AWS account with Bedrock LLM model enabled
+- AWS_ACCESS_KEY
+- AWS_SECRET_ACCESS_KEY
 
 ## Setup Instructions
 
@@ -70,6 +73,31 @@ http://localhost:9000/.well-known/agent-card.json
 ```
 
 This endpoint provides standardized metadata about the agent capabilities according to the A2A protocol.
+
+### Executing the agent
+
+Run the following from terminal
+```
+curl -X POST http://localhost:9000/ \                                                                                                              9s
+-H "Content-Type: application/json" \
+-d '{
+  "jsonrpc": "2.0",
+  "id": "req-001",
+  "method": "message/send",
+  "params": {
+    "message": {
+      "role": "user",
+      "parts": [
+        {
+          "kind": "text",
+          "text": "What is 10 * 11? Give me the answer and shaksperean style. The answer should be one short sentence"
+        }
+      ],
+      "messageId": "12345678-1234-1234-1234-123456789012"
+    }
+  }
+}' | jq .
+```
 
 ## Project Structure
 
